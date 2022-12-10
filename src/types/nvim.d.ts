@@ -186,4 +186,33 @@ declare namespace vim {
     useUtf16?: boolean
   ) => number
   const uri_from_fname: (fname: string) => string
+
+  namespace keymap {
+    type Mode = "i" | "n" | "v"
+    type SetOpts = {
+      buffer: boolean | number
+      silent: boolean
+    }
+    // -- Can add mapping to Lua functions
+    // vim.keymap.set('n', 'lhs', function() print("real lua function") end)
+
+    // -- Can use it to map multiple modes
+    // vim.keymap.set({'n', 'v'}, '<leader>lr', vim.lsp.buf.references, { buffer=true })
+
+    // -- Can add mapping for specific buffer
+    // vim.keymap.set('n', '<leader>w', "<cmd>w<cr>", { silent = true, buffer = 5 })
+
+    // -- Expr mappings
+    // vim.keymap.set('i', '<Tab>', function()
+    //   return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"
+    // end, { expr = true })
+    // -- <Plug> mappings
+    // vim.keymap.set('n', '[%', '<Plug>(MatchitNormalMultiBackward)')
+    const set: (
+      mode: Mode | Mode[],
+      input: string,
+      to: string | (() => void),
+      opts: SetOpts
+    ) => void
+  }
 }
