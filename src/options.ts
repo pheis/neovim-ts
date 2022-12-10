@@ -1,3 +1,4 @@
+// TODO: document these
 const options = {
   expandtab: true,
   shiftwidth: 2,
@@ -25,6 +26,8 @@ const options = {
   winblend: 10,
   pumblend: 10,
   signcolumn: "yes",
+
+  laststatus: 3,
 }
 
 const setOptions = (): void =>
