@@ -215,4 +215,5 @@ declare namespace vim {
       opts?: SetOpts
     ) => void
   }
+  const opt: Record<"string", unknown>
 }
