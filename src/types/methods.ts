@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 export enum Methods {
   CODE_ACTION = "textDocument/codeAction",
   DEFINITION = "textDocument/definition",
