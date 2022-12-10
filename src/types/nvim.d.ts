@@ -188,7 +188,7 @@ declare namespace vim {
   const uri_from_fname: (fname: string) => string
 
   namespace keymap {
-    type Mode = "i" | "n" | "v"
+    // type Mode = "i" | "n" | "v"
     type SetOpts = {
       buffer: boolean | number
       silent: boolean
@@ -209,7 +209,7 @@ declare namespace vim {
     // -- <Plug> mappings
     // vim.keymap.set('n', '[%', '<Plug>(MatchitNormalMultiBackward)')
     const set: (
-      mode: Mode | Mode[],
+      mode: string | string[],
       input: string,
       to: string | (() => void),
       opts?: SetOpts
