@@ -120,6 +120,9 @@ declare namespace vim {
     const get: (
       bufnr?: number
     ) => import("vscode-languageserver-types").Diagnostic[]
+
+    const enable: () => void
+    const disable: () => void
   }
 
   namespace api {
@@ -220,5 +223,9 @@ declare namespace vim {
 
   namespace g {
     let mapleader: string
+  }
+
+  namespace o {
+    let background: "dark" | "light"
   }
 }
