@@ -1,4 +1,4 @@
-// TODO: document these
+// See :help option-list
 const options = {
   expandtab: true,
   shiftwidth: 2,
