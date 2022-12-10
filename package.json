@@ -6,6 +6,8 @@
     "lint": "eslint . --ext .ts"
   },
   "devDependencies": {
+    "@pheis/eslint-config": "github:pheis/eslint-config#main",
+    "@pheis/prettier-config": "github:pheis/prettier-config#main",
     "typescript-to-lua": "^1.11.1"
   }
 }
