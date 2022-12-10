@@ -11,6 +11,7 @@ const options = {
   updatetime: 100,
 
   relativenumber: true,
+  number: true,
 
   showcmd: true,
 
