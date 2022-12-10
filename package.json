@@ -9,6 +9,7 @@
     "@pheis/prettier-config": "github:pheis/prettier-config#main",
     "@types/node": "^18.11.12",
     "lua-types": "^2.13.1",
+    "type-fest": "^3.3.0",
     "typescript-to-lua": "^1.11.1"
   }
 }
