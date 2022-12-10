@@ -1,5 +1,6 @@
 import { lazy, partial } from "./lib/fn"
 import { chars } from "./lib/string"
+import { toggle_bg, toggle_diagnostics } from "./utils/togglers"
 
 const set = vim.keymap.set
 const nmap = partial(set, "n")
@@ -11,8 +12,12 @@ const cmd: (cmd: string) => () => void = vimCmd => lazy(vim.cmd, vimCmd)
 const nmaps = {
   // "" space space to like spacemacs
   "<leader><leader>": ":",
+
   "yon": (): void => ["set invnumber", "set invrelativenumber"].forEach(s => vim.cmd(s)),
   "yoh": cmd("set invhlsearch"),
+  "yod": toggle_diagnostics,
+  "yob": toggle_bg,
+
   "]q": cmd("cnext"),
   "[q": cmd("cprev"),
   "<leader>m": cmd("make"),
