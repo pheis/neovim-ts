@@ -1,9 +1,12 @@
-import { setupKeymap } from "./keymap"
+import { setKeys } from "./keymap"
+import { setOptions } from "./options"
 
 const setup = (): void => {
-  setupKeymap()
+  setOptions()
 
-  vim.cmd("colo zellner")
+  setKeys()
+
+  vim.cmd("colo habamax")
 }
 
 setup()
