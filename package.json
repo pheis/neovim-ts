@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "prebuild": "npm run lint",
+    "build": "tstl -p tsconfig.build.json",
+    "dev": "tstl -p tsconfig.build.json --watch",
+    "lint": "eslint . --ext .ts"
+  },
+  "devDependencies": {
+  }
+}
