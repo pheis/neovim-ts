@@ -212,7 +212,7 @@ declare namespace vim {
       mode: Mode | Mode[],
       input: string,
       to: string | (() => void),
-      opts: SetOpts
+      opts?: SetOpts
     ) => void
   }
 }
