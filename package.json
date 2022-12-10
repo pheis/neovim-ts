@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "prebuild": "npm run lint",
     "build": "tstl -p tsconfig.build.json",
     "dev": "tstl -p tsconfig.build.json --watch",
     "lint": "eslint . --ext .ts"
@@ -8,6 +7,8 @@
   "devDependencies": {
     "@pheis/eslint-config": "github:pheis/eslint-config#main",
     "@pheis/prettier-config": "github:pheis/prettier-config#main",
+    "@types/node": "^18.11.12",
+    "lua-types": "^2.13.1",
     "typescript-to-lua": "^1.11.1"
   }
 }
