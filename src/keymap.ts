@@ -19,7 +19,10 @@ const nmaps = {
   "<leader>w": cmd("write"),
 }
 
-const setupKeymap = (): void => {
+const setKeys = (): void => {
+  // set space for leader
+  vim.g.mapleader = " "
+
   // normal maps
   Object.entries(nmaps).forEach(([left, right]) => nmap(left, right))
 
@@ -38,4 +41,4 @@ const setupKeymap = (): void => {
   set(chars("vn"), "/", "/\v)")
 }
 
-export { setupKeymap }
+export { setKeys }
