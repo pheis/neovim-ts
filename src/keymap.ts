@@ -1,10 +1,9 @@
-import { lazy, partial, toUnary } from "./lib/fn"
-import { entries } from "./lib/obj"
+import { lazy, partial } from "./lib/fn"
 import { chars } from "./lib/string"
 
 const set = vim.keymap.set
-const nset = partial(set, "n")
-const vset = partial(set, "v")
+const nmap = partial(set, "n")
+const vmap = partial(set, "v")
 
 const cmd: (cmd: string) => () => void = vimCmd => lazy(vim.cmd, vimCmd)
 
@@ -21,18 +20,19 @@ const nmaps = {
 }
 
 const setupKeymap = (): void => {
-  entries(nmaps).forEach(toUnary(nset))
+  // normal maps
+  Object.entries(nmaps).forEach(([left, right]) => nmap(left, right))
 
   // fd to Esc
   set(chars("ivt"), "fd", "<Esc>")
 
   // Easier Moving between splits
-  chars("HJKL").forEach(key => nset(`C-${key}`, `:<C-W><C-${key}>`))
+  chars("HJKL").forEach(key => nmap(`C-${key}`, `:<C-W><C-${key}>`))
 
   // eslint-disable-next-line no-useless-escape
   // vim script version was...
   // vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
-  vset("//", "y/\\V<C-r>=escape(@\",'/')<CR><CR>")
+  vmap("//", "y/\\V<C-r>=escape(@\",'/')<CR><CR>")
 
   // very magic
   set(chars("vn"), "/", "/\v)")
