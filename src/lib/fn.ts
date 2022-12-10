@@ -31,3 +31,8 @@ export const lazy =
   <Fn extends FnLike>(fn: Fn, ...params: Parameters<Fn>) =>
   (): ReturnType<Fn> =>
     fn(...params) as never
+
+export const toUnary =
+  <Fn extends FnLike>(fn: Fn) =>
+  (params: Parameters<Fn>): ReturnType<Fn> =>
+    fn(...params) as never
