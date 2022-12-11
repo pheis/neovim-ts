@@ -4,7 +4,6 @@ import { lspPlugins } from "./lsp"
 import { plugin } from "./Plugin"
 import { telescope } from "./telescope"
 import { treesitterPlugins } from "./treesitter"
-// import {lsp} from './lsp'
 
 const plugins = [
   "wbthomason/packer.nvim",
@@ -24,15 +23,6 @@ const plugins = [
   "nvim-lua/plenary.nvim",
   "rhysd/conflict-marker.vim",
   "ellisonleao/gruvbox.nvim",
-
-  // {
-  //   "neovim/nvim-lspconfig",
-  //   requires = {
-  //     "hrsh7th/cmp-nvim-lsp",
-  //   },
-  //   config = [[require'config.lsp']],
-  // },
-  //
 ]
   .map(name => plugin(name))
   .concat([telescope, ...treesitterPlugins, ...lspPlugins])

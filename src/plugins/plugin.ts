@@ -5,6 +5,7 @@ export type Plugin = {
   setup?: () => void
 }
 
+
 export const plugin = (def: PluginDefinition, setup?: () => void): Plugin => ({
   def,
   setup,

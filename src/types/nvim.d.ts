@@ -111,6 +111,15 @@ declare namespace vim {
         newName?: string,
         options?: Record<string, unknown>
       ) => void
+
+      const code_action: () => void
+
+      const hover: ()  => void
+      const implementation: ()  => void
+      const references: ()  => void
+      const signature_help: ()  => void
+      const definition: ()  => void
+      const declaration: ()  => void
     }
     /** @deprecated */
     const buf_get_clients: (bufnr: number) => LuaTable<number, NvimLsp.Client>
@@ -123,6 +132,9 @@ declare namespace vim {
 
     const enable: () => void
     const disable: () => void
+
+      const goto_prev: ()  => void
+      const goto_next: ()  => void
   }
 
   namespace api {

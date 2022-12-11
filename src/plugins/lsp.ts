@@ -1,12 +1,14 @@
-import * as mason from "mason"
+import { setup as setupMason } from "mason"
+import { setup as setupMasonLspConfig } from "mason"
 import { setup as setupTypescript } from "typescript"
 
 import { plugin } from "./plugin"
 
 export const lspPlugins = [
+  // lsp here?
   plugin("jose-elias-alvarez/typescript.nvim", () => setupTypescript({})),
-  plugin("williamboman/mason.nvim", (): void => mason.setup({})),
-  plugin("williamboman/mason-lspconfig.nvim"),
+  plugin("williamboman/mason.nvim", (): void => setupMason()),
+  plugin("williamboman/mason-lspconfig.nvim", () => setupMasonLspConfig()),
 ]
 
 //
