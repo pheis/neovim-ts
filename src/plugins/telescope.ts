@@ -21,7 +21,7 @@ export const leaderMappings = mapValues(
     s: "lsp_document_symbols",
     S: "lsp_workspace_symbols",
   },
-  cmd => () => vim.cmd(`Telescope ${cmd}`)
+  cmd => (): void => vim.cmd(`Telescope ${cmd}`)
 )
 
 // -- nnoremap <leader>m <cmd>Telescope marks<cr>

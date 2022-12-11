@@ -1,23 +1,12 @@
 import { startup } from "packer"
 
-import { treesitter } from "./treesitter"
+import { lspPlugins } from "./lsp"
+import { plugin } from "./Plugin"
 import { telescope } from "./telescope"
-import { typescript } from "./typescript"
+import { treesitterPlugins } from "./treesitter"
 // import {lsp} from './lsp'
-import { Plugin } from "./Plugin"
 
-// local execute = vim.api.nvim_command
-// local fn = vim.fn
-
-// local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-// if fn.empty(fn.glob(install_path)) > 0 then
-//   execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-//   execute("packadd packer.nvim")
-// end
-//
-
-const simplePlugins = [
+const plugins = [
   "wbthomason/packer.nvim",
   "justinmk/vim-dirvish",
   "tpope/vim-repeat",
@@ -36,11 +25,6 @@ const simplePlugins = [
   "rhysd/conflict-marker.vim",
   "ellisonleao/gruvbox.nvim",
 
-  // Lsp {
-  "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
-  // }
-
   // {
   //   "neovim/nvim-lspconfig",
   //   requires = {
@@ -50,23 +34,17 @@ const simplePlugins = [
   // },
   //
 ]
-
-const configuredPlugins: Plugin[] = [
-  treesitter,
-  telescope,
-  // lsp,
-  typescript,
-]
+  .map(name => plugin(name))
+  .concat([telescope, ...treesitterPlugins, ...lspPlugins])
 
 export const loadPlugins = (): void => {
-  // const plugins = simplePlugins.concat(
-  //   configuredPlugins.map(plugin => plugin.def)
-  // )
-
   startup(use => {
-    simplePlugins.forEach(plugin => use(plugin))
-    configuredPlugins.forEach(plugin => use(plugin.def))
+    plugins.forEach(plugin => use(plugin.def))
   })
-  
-  configuredPlugins.forEach(plugin => plugin.setup())
+
+  plugins.forEach(({ setup }) => {
+    if (setup) {
+      setup()
+    }
+  })
 }

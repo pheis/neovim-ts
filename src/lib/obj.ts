@@ -1,5 +1,3 @@
-import { FnLike } from "./fn"
-
 type ObjectKey = string | symbol | number
 
 const keys: <Obj extends Record<string, unknown>>(
@@ -14,24 +12,38 @@ const entries: <Obj extends Record<string, any>>(
   obj: Obj
 ) => Entry<Obj>[] = obj => Object.entries(obj)
 
-// const mapValues: <
-//   Obj extends Record<string, any>,
-//   Fn extends (value: Obj[Key in keyof Obj]) => any
-//   >(obj: Obj, fn: Fn): {
-//   [Key in keyof Obj]: [Key, ReturnType<FnLike>]
-// } => {
-const mapValues = (obj: Record<string, any>, fn: FnLike) => {
-  const mapped = {}
+const mapValues = <
+  Obj extends Record<ObjectKey, unknown>,
+  Fn extends (a: Obj[keyof Obj]) => unknown
+>(
+  obj: Obj,
+  fn: Fn
+): {
+  [Key in keyof Obj]: ReturnType<Fn>
+} => {
+  const mapped: Record<string, unknown> = {}
 
-  Object.entries(obj).forEach(([key, value]) => (mapped[key] = fn(value)))
-  return mapped
+  Object.entries(obj).forEach(
+    ([key, value]) => (mapped[key] = fn(value as never))
+  )
+
+  return mapped as never
 }
 
-const mapKeys = (obj: Record<string, any>, fn: FnLike) => {
-  const mapped = {}
+const mapKeys = <
+  Obj extends Record<ObjectKey, unknown>,
+  Fn extends (a: keyof Obj) => ObjectKey
+>(
+  obj: Obj,
+  fn: Fn
+): Record<ReturnType<Fn>, Obj[keyof Obj]> => {
+  const mapped: Record<string, unknown> = {}
 
-  Object.entries(obj).forEach(([key, value]) => (mapped[fn(key)] = value))
-  return mapped
+  Object.entries(obj).forEach(
+    ([key, value]) => (mapped[fn(key as never) as never] = value)
+  )
+
+  return mapped as never
 }
 
 export { keys, entries, mapValues, mapKeys }

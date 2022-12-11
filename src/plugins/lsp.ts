@@ -1,3 +1,15 @@
+import * as mason from "mason"
+import { setup as setupTypescript } from "typescript"
+
+import { plugin } from "./plugin"
+
+export const lspPlugins = [
+  plugin("jose-elias-alvarez/typescript.nvim", () => setupTypescript({})),
+  plugin("williamboman/mason.nvim", (): void => mason.setup({})),
+  plugin("williamboman/mason-lspconfig.nvim"),
+]
+
+//
 // local nvim_lsp = require("lspconfig")
 
 // local lsp_formatting = function(bufnr)
@@ -43,7 +55,6 @@
 
 //   -- Mappings.
 //   local opts = { noremap = true, silent = true }
-
 
 //   -- See `:help vim.lsp.*` for documentation on any of the below functions
 //   buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -144,4 +155,3 @@
 // -- autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync()
 // -- autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync()
 // -- ]])
-
