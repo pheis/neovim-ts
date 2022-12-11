@@ -2,7 +2,7 @@ import { lazy, partial } from "./lib/fn"
 import { mapKeys } from "./lib/obj"
 import { chars } from "./lib/string"
 import { toggle_bg, toggle_diagnostics } from "./utils/togglers"
-import * as telescope from './plugins/telescope'
+import * as telescope from "./plugins/telescope"
 const set = vim.keymap.set
 const nmap = partial(set, "n")
 const vmap = partial(set, "v")
@@ -13,11 +13,11 @@ const leaderMappings = {
   // "" space space to like spacemacs
   "<leader>": ":",
 
-  "m": cmd("make"),
-  "w": cmd("write"),
-  "fa": cmd("Telescope find_files"),
-  
-  ...telescope.leaderMappings
+  m: cmd("make"),
+  w: cmd("write"),
+  fa: cmd("Telescope find_files"),
+
+  ...telescope.leaderMappings,
 }
 
 // prettier-ignore

@@ -30,8 +30,6 @@
 //   os.execute(cmd)
 // end
 
-
-
 // vim.keymap.set('n', '<leader>x', run_buffer)
 
 // -- local visual_selection_range = function()
@@ -46,7 +44,6 @@
 // --   end
 // -- end
 
-
 // -- local send_esc = function()
 // --   local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
 // --   vim.api.nvim_feedkeys(esc, 'x', true)
@@ -60,8 +57,5 @@
 // --   os.execute(cmd)
 // -- end
 
-
-
 // -- vim.keymap.set('v', '<leader>r', print_visual_selection)
 // -- vim.keymap.set('n', '<leader>q', function() vim.cmd('so %') end)
-

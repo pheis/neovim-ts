@@ -1,6 +1,6 @@
 const toggle_bg = (): void => {
   const bg = vim.o.background
-  vim.o.background = bg === 'dark' ? 'light' : 'dark'
+  vim.o.background = bg === "dark" ? "light" : "dark"
 }
 
 let diagnostics = false
@@ -15,4 +15,4 @@ const toggle_diagnostics = () => {
   diagnostics = !diagnostics
 }
 
-export {toggle_bg, toggle_diagnostics}
+export { toggle_bg, toggle_diagnostics }

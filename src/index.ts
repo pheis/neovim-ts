@@ -9,7 +9,7 @@ const setup = (): void => {
 
   setKeys()
 
-  vim.cmd('colo gruvbox')
+  vim.cmd("colo gruvbox")
 }
 
 setup()

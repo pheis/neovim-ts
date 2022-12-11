@@ -1,4 +1,4 @@
-import {FnLike} from './fn'
+import { FnLike } from "./fn"
 
 type ObjectKey = string | symbol | number
 
@@ -14,7 +14,6 @@ const entries: <Obj extends Record<string, any>>(
   obj: Obj
 ) => Entry<Obj>[] = obj => Object.entries(obj)
 
-
 // const mapValues: <
 //   Obj extends Record<string, any>,
 //   Fn extends (value: Obj[Key in keyof Obj]) => any
@@ -24,20 +23,15 @@ const entries: <Obj extends Record<string, any>>(
 const mapValues = (obj: Record<string, any>, fn: FnLike) => {
   const mapped = {}
 
-  Object.entries(obj).forEach(([key,value]) =>
-            mapped[key] = fn(value)
-                             )
-                          return mapped
+  Object.entries(obj).forEach(([key, value]) => (mapped[key] = fn(value)))
+  return mapped
 }
 
 const mapKeys = (obj: Record<string, any>, fn: FnLike) => {
   const mapped = {}
 
-  Object.entries(obj).forEach(([key,value]) =>
-            mapped[fn(key)] = value
-                             )
-                          return mapped
+  Object.entries(obj).forEach(([key, value]) => (mapped[fn(key)] = value))
+  return mapped
 }
 
-export { keys, entries, mapValues, mapKeys}
-
+export { keys, entries, mapValues, mapKeys }

@@ -1,8 +1,10 @@
 import { startup } from "packer"
 
-import {treesitter} from './treesitter'
-import {telescope} from './telescope'
-import {Plugin} from './Plugin'
+import { treesitter } from "./treesitter"
+import { telescope } from "./telescope"
+import { typescript } from "./typescript"
+// import {lsp} from './lsp'
+import { Plugin } from "./Plugin"
 
 // local execute = vim.api.nvim_command
 // local fn = vim.fn
@@ -33,17 +35,38 @@ const simplePlugins = [
   "nvim-lua/plenary.nvim",
   "rhysd/conflict-marker.vim",
   "ellisonleao/gruvbox.nvim",
+
+  // Lsp {
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
+  // }
+
+  // {
+  //   "neovim/nvim-lspconfig",
+  //   requires = {
+  //     "hrsh7th/cmp-nvim-lsp",
+  //   },
+  //   config = [[require'config.lsp']],
+  // },
+  //
 ]
 
 const configuredPlugins: Plugin[] = [
   treesitter,
   telescope,
+  // lsp,
+  typescript,
 ]
 
 export const loadPlugins = (): void => {
-  const plugins = simplePlugins.concat(configuredPlugins.map(plugin => plugin.name))
+  // const plugins = simplePlugins.concat(
+  //   configuredPlugins.map(plugin => plugin.def)
+  // )
 
-  startup(use => plugins.forEach(plugin => use(plugin)))
-
+  startup(use => {
+    simplePlugins.forEach(plugin => use(plugin))
+    configuredPlugins.forEach(plugin => use(plugin.def))
+  })
+  
   configuredPlugins.forEach(plugin => plugin.setup())
 }

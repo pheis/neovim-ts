@@ -1,10 +1,10 @@
-import { setup } from 'nvim-treesitter.configs'
-import {plugin} from './plugin'
+import { setup } from "nvim-treesitter.configs"
+import { plugin } from "./plugin"
 
-export const treesitter = plugin(
-  "nvim-treesitter/nvim-treesitter",
-  () => setup({
-    ensure_installed: [    "c",
+export const treesitter = plugin("nvim-treesitter/nvim-treesitter", () =>
+  setup({
+    ensure_installed: [
+      "c",
       "lua",
       "go",
       "rust",
@@ -17,12 +17,12 @@ export const treesitter = plugin(
       "fish",
       "fennel",
       "bash",
-      "yaml"
+      "yaml",
     ],
-  sync_install: false,
-  highlight: {
-    enable: true,
-    additional_vim_regex_highlighting: false,
-  },
+    sync_install: false,
+    highlight: {
+      enable: true,
+      additional_vim_regex_highlighting: false,
+    },
   })
 )

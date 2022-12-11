@@ -14,4 +14,3 @@
 //     _ _))
 
 // (nmap "ga" #(vim.cmd (.. "edit " (to-alt-file (vim.fn.expand "%")))))
-
