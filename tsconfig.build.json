@@ -7,7 +7,7 @@
   ],
   "tstl": {
     "luaTarget": "JIT",
-    "luaBundle": "./lua/init.lua",
+    "luaBundle": "./lua/generated.lua",
     "luaBundleEntry": "./src/index.ts",
     "noResolvePaths": [
       "lspconfig"

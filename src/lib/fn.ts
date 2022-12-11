@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-type FnLike = (...args: any[]) => any
+export type FnLike = (...args: any[]) => any
 
 type Tail<Arr extends any[]> = Arr extends [any, ...infer Rest] ? Rest : never
 

@@ -1,17 +1,27 @@
 import { lazy, partial } from "./lib/fn"
+import { mapKeys } from "./lib/obj"
 import { chars } from "./lib/string"
 import { toggle_bg, toggle_diagnostics } from "./utils/togglers"
-
+import * as telescope from './plugins/telescope'
 const set = vim.keymap.set
 const nmap = partial(set, "n")
 const vmap = partial(set, "v")
 
 const cmd: (cmd: string) => () => void = vimCmd => lazy(vim.cmd, vimCmd)
 
+const leaderMappings = {
+  // "" space space to like spacemacs
+  "<leader>": ":",
+
+  "m": cmd("make"),
+  "w": cmd("write"),
+  "fa": cmd("Telescope find_files"),
+  
+  ...telescope.leaderMappings
+}
+
 // prettier-ignore
 const nmaps = {
-  // "" space space to like spacemacs
-  "<leader><leader>": ":",
 
   "yon": (): void => ["set invnumber", "set invrelativenumber"].forEach(s => vim.cmd(s)),
   "yoh": cmd("set invhlsearch"),
@@ -20,8 +30,8 @@ const nmaps = {
 
   "]q": cmd("cnext"),
   "[q": cmd("cprev"),
-  "<leader>m": cmd("make"),
-  "<leader>w": cmd("write"),
+
+  ...mapKeys(leaderMappings, key => `<leader>${key}`)
 }
 
 const setKeys = (): void => {
@@ -35,7 +45,7 @@ const setKeys = (): void => {
   set(chars("ivt"), "fd", "<Esc>")
 
   // Easier Moving between splits
-  chars("HJKL").forEach(key => nmap(`C-${key}`, `:<C-W><C-${key}>`))
+  chars("HJKL").forEach(key => nmap(`<C-${key}>`, `<C-W><C-${key}>`))
 
   // eslint-disable-next-line no-useless-escape
   // vim script version was...
