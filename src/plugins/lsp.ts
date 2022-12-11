@@ -1,14 +1,50 @@
 import { setup as setupMason } from "mason"
 import { setup as setupMasonLspConfig } from "mason"
 import { setup as setupTypescript } from "typescript"
+import * as null_ls from "null-ls"
+import * as lspConfig from "lspconfig"
 
 import { plugin } from "./plugin"
 
+const enabledLsps = [
+  // handled by typescript.nvim?
+  // "tsserver",
+  "pyright",
+  "terraformls",
+  "rust_analyzer",
+  "ccls",
+]
+
+const setupLsps = () => {
+  enabledLsps.forEach(lspName => lspConfig[lspName].setup)
+}
+
 export const lspPlugins = [
   // lsp here?
+  plugin("jose-elias-alvarez/null-ls.nvim", () =>
+    null_ls.setup({
+      sources: [
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.completion.spell,
+        null_ls.builtins.formatting.prettier.with({
+          only_local: "node_modules/.bin",
+        }),
+      ],
+    })
+  ),
   plugin("jose-elias-alvarez/typescript.nvim", () => setupTypescript({})),
   plugin("williamboman/mason.nvim", (): void => setupMason()),
   plugin("williamboman/mason-lspconfig.nvim", () => setupMasonLspConfig()),
+  plugin("neovim/nvim-lspconfig", setupLsps),
+
+  plugin("hrsh7th/cmp-nvim-lsp"),
+  plugin("hrsh7th/cmp-buffer"),
+  plugin("hrsh7th/cmp-path"),
+  plugin("hrsh7th/cmp-cmdline"),
+  plugin("hrsh7th/nvim-cmp"),
+  plugin("hrsh7th/cmp-vsnip"),
+  plugin("hrsh7th/vim-vsnip"),
 ]
 
 //

@@ -1,7 +1,7 @@
 import { startup } from "packer"
 
 import { lspPlugins } from "./lsp"
-import { plugin } from "./Plugin"
+import { plugin } from "./plugin"
 import { telescope } from "./telescope"
 import { treesitterPlugins } from "./treesitter"
 
